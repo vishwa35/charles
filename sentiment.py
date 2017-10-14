@@ -66,7 +66,7 @@ class Sentiment(object):
             # parsing tweets one by one
             for tweet in fetched_tweets:
                 # empty dictionary to store required params of a tweet
-                parsed_tweet = (tweet.timestamp_ms, self.get_tweet_sentiment(tweet.text))
+                parsed_tweet = (tweet.created_at, self.get_tweet_sentiment(tweet.text))
 
                 # appending parsed tweet to tweets list
                 if tweet.retweet_count > 0:
