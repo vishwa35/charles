@@ -41,4 +41,4 @@ if __name__ == "__main__":
     # for user in query_db('select * from users'):
     #     print user['name']
     app.run()
-    # close_connection()
+    # close_con nection()
