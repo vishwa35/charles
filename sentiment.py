@@ -69,7 +69,7 @@ class Sentiment(object):
                 parsed_tweet = {}
 
                 # saving text of tweet
-                parsed_tweet['time'] = tweet.created_at
+                parsed_tweet['time'] = tweet.created_at.strftime('%m/%d/%Y')
                 # saving sentiment of tweet
                 parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
 
