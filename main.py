@@ -38,6 +38,9 @@ def tweet_sent():
     return json.dumps(s.get_tweets())
 
 if __name__ == "__main__":
+
     for user in query_db('select * from users'):
         print user['name']
+
     app.run()
+    # close_con nection()
