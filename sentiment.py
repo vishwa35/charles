@@ -2,9 +2,9 @@ import re
 import tweepy
 from tweepy import OAuthHandler
 from textblob import TextBlob
-from charles import keys
+import keys
 
-class TwitterClient(object):
+class Sentiment(object):
     '''
     Generic Twitter Class for sentiment analysis.
     '''
@@ -13,10 +13,10 @@ class TwitterClient(object):
         Class constructor or initialization method.
         '''
         # keys and tokens from the Twitter Dev Console
-        consumer_key = keys['consumerKey']
-        consumer_secret = keys['consumerSecret']
-        access_token = keys['accessToken']
-        access_token_secret = keys['accessSecret']
+        consumer_key = keys.keys['consumerKey']
+        consumer_secret = keys.keys['consumerSecret']
+        access_token = keys.keys['accessToken']
+        access_token_secret = keys.keys['accessSecret']
 
         self.topic = keyword
         # attempt authentication
@@ -82,4 +82,3 @@ class TwitterClient(object):
         except tweepy.TweepError as e:
             # print error (if any)
             print("Error : " + str(e))
-
