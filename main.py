@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, request
 from sentiment import Sentiment
 import json
 import sqlite3
@@ -36,6 +36,16 @@ def home():
 def tweet_sent():
     s = Sentiment("Trump")
     return json.dumps(s.get_tweets())
+
+@app.route('/', methods=['POST'])
+def my_form_post():
+
+    text = request.form['text']
+    return text
+    # s = Sentiment(text)
+    # return json.dumps(s.get_tweets())
+    # processed_text = text.upper()
+    # return processed_text
 
 if __name__ == "__main__":
     for user in query_db('select * from users'):
