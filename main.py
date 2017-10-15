@@ -47,6 +47,7 @@ def my_form_get():
     # print(text + ":")
     # print tweet_sent(text)
     tweetscrape(text)
+    redditscrape(text)
     return render_template('volume_distribution_vis.html')
 
 @app.route('/back', methods=['GET'])
@@ -101,7 +102,7 @@ def tweetscrape(topic):
         #     print '----------------------------------------------------------------------'
         daysAgo -= 1
 
-    write_csvfile = "./templates/data/sentiment_data.csv"
+    write_csvfile = "./static/sentiment_data.csv"
     csv = open(write_csvfile, "w") 
     csv.write('Sentiment,Positive,Neutral,Negative,' + topic + '\n')
     for timeStamp in tweetMap:
@@ -128,7 +129,7 @@ def redditscrape(sub, keyword):
     	else:
     		negative += 1
 
-    write_csvfile = "./templates/data/reddit_data.csv"
+    write_csvfile = "./static/reddit_data.csv"
     csv = open(write_csvfile, "w") 
     csv.write('Sentiment,Content,' + sub + " : " + keyword + '\n')
     csv.write("Negative" + ', ' + negative + ',0\n')

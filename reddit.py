@@ -39,7 +39,7 @@ class RSentiment(object):
         else:
             return 'negative'
 
-    def get_comments(self,sub, keyword):
+    def get_comments(self,sub = 'all', keyword):
         '''
         Main function to fetch comments and parse them.
         '''
