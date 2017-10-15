@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Python Flask Bucket List App</title>
+    <title>Sentiment Data Analyzer</title>
 
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +11,8 @@
 
     <style>
         body {
-            background-color: #ffffff;
+            background-image: url("./charles.png")
+            background-color: #B9DBF8
         }
         h3   {color: #a00008;}
         h1    {color: #820006;}
@@ -20,17 +21,23 @@
 
 </head>
 
-<body>
+<body style="background-color:powderblue;">
 
     <div class="container">
         <div class="header">
-            <h3 class="text-muted" >Meet Charles.</h3>
+            <h3 class="text-muted" >Hey, I'm Charles. I'm a real-time bot trained to analyze the sentiment of any topic of your choosing from websites like Reddit and Twitter. I can provide insights about sentiment trends over time or visualize tweets and comments about the topic by volume. </h3>
+            <br>
         </div>
 
-        <h1>Ask him what to analyze:</h1>
+        <h1>What topic are you interested in?</h1>
         <form action="/req" method="GET">
             <input type="text" name="text">
-            <input type="submit" name="my-form" value="Send">
+            <input type="submit" name="my-form" value="Twitter">
+        </form>
+
+        <form action="/req2" method="GET">
+            <input type="text" name="text">
+            <input type="submit" name="my-form2" value="Reddit">
         </form>
 
     </div>

@@ -1,6 +1,4 @@
 <html>
-<html>
-<html>
 <style>
 
 .axis .domain {
@@ -27,9 +25,9 @@ var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
-    .range(['#FF99AD','#FF4D70','#FF0033', '']);
+    .range(['#00FF7F','#4DFFA5','#99FFCC', '']);
 
-d3.csv("./reddit_data.csv", function(d, i, columns) {
+d3.csv("./static/reddit_data.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;

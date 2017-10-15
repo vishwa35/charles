@@ -72,7 +72,7 @@ d3.csv("./static/sentiment_data.csv", function(d, i, columns) {
       .attr("font-weight", "bold")
       .style("font-size", "20px")
       .attr("text-anchor", "start")
-      .text(keys.slice()[3] + ": Volume & Sentiment of Tweets Over Time ");
+      .text(keys.slice()[3] + ": Volume & Sentiment of Tweets Day to Day ");
 
   keys.splice(3, 1)
 
@@ -100,7 +100,7 @@ d3.csv("./static/sentiment_data.csv", function(d, i, columns) {
 
 </script>
 
-<svg id='reddit' width="900" height="600"></svg>
+<!-- <svg id='reddit' width="900" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -119,7 +119,7 @@ var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
-    .range(['#FF99AD','#FF4D70','#FF0033', '']);
+    .range(['#00FF7F','#4DFFA5','#99FFCC', '']);
 
 d3.csv("./static/reddit_data.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
@@ -191,5 +191,5 @@ d3.csv("./static/reddit_data.csv", function(d, i, columns) {
       .text(function(d) { return d; });
 });
 
-</script>
+</script> -->
 </html>
