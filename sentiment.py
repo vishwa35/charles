@@ -52,7 +52,7 @@ class TSentiment(object):
         else:
             return 'negative'
 
-    def get_tweets(self, count, sinceTime, untilTime):
+    def get_tweets(self, count=10, sinceTime=None, untilTime=None):
         '''
         Main function to fetch tweets and parse them.
         '''
@@ -61,7 +61,10 @@ class TSentiment(object):
 
         try:
             # call twitter api to fetch tweets
-            fetched_tweets = self.api.search(q = self.topic, count = count, since = sinceTime, until = untilTime)
+            if sinceTime == None or untilTime == None:
+                fetched_tweets = self.api.search(q = self.topic, count = count)
+            else:
+                fetched_tweets = self.api.search(q = self.topic, count = count, since = sinceTime, until = untilTime)
 
             # parsing tweets one by one
             for tweet in fetched_tweets:

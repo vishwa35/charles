@@ -32,19 +32,31 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    print 'jjj'
     return render_template('index.html')
 
 @app.route("/sent_json")
-def tweet_sent():
-    s = TSentiment("Trump")
+def tweet_sent(text):
+    s = TSentiment(text)
     return json.dumps(s.get_tweets())
 
 @app.route('/req', methods=['GET'])
 def my_form_get():
     text =  request.args.get('text')
-    print(text)
+    # print(text + ":")
+    # print tweet_sent(text)
+    return render_template('output.html')
+
+@app.route('/back', methods=['GET'])
+def my_form_back():
+    # text = request.args.get('text')
+    # print(text)
     return render_template('index.html')
+#
+# @app.route('/show', methods=['GET'])
+# def my_form_show():
+#     # text = request.args.get('text')
+#     # print(text)
+#     return render_template('index.html')
 
 if __name__ == "__main__":
     # for user in query_db('select * from users'):
