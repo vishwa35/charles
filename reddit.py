@@ -1,4 +1,4 @@
-import re, praw
+import re, praw, sys
 from textblob import TextBlob
 import keys
 
@@ -39,16 +39,18 @@ class RSentiment(object):
         else:
             return 'negative'
 
-    def get_comments(self, keyword):
+    def get_comments(self,sub, keyword):
         '''
         Main function to fetch comments and parse them.
         '''
-        results = self.reddit.subreddit('all').search(query = keyword)
+        results = list(self.reddit.subreddit(sub).search(keyword))
         ans = []
         val = 0
+        print(len(results))
         for submission in results:
-            val += self.get_sentiment(submission.title)
+            ans.append(submission.title)
+            val += self.get_sentiment(submission.title) / len(results)
         return val
 
 stuff = RSentiment()
-print stuff.get_comments('Trump')
+print stuff.get_comments(sys.argv[1], sys.argv[2])
