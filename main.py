@@ -111,9 +111,32 @@ def tweetscrape(topic):
     #     print time + " " + str(tweetMap[time][0]) + " percent positive, " + str(tweetMap[time][1]) + " percent negative, " + str(tweetMap[time][2]) + " percent neutral"
 
 
+def redditscrape(sub, keyword):
+    s = RSentiment()
 
+
+    # Count from 10 days ago to include every single day time interval
+    positive = 0
+    neutral = 0
+    negative = 0
+    reddit = s.get_comments(sub, keyword)
+    for comment in reddit:
+    	if comment > 0:
+    		positive += 1
+    	if comment == 0:
+    		neutral += 1
+    	else:
+    		negative += 1
+
+    write_csvfile = "./templates/data/reddit_data.csv"
+    csv = open(write_csvfile, "w") 
+    csv.write('Sentiment,Content,' + sub + " : " + keyword + '\n')
+    csv.write("Negative" + ', ' + negative + ',0\n')
+    csv.write("Neutral" + ', ' + neutral + ',0\n')
+    csv.write("Positive" + ', ' + positive + ',0\n')
 
 if __name__ == "__main__":
     # for user in query_db('select * from users'):
     #     print user['name']
     app.run()
+

@@ -43,14 +43,14 @@ class RSentiment(object):
         '''
         Main function to fetch comments and parse them.
         '''
-        results = list(self.reddit.subreddit(sub).search(query = keyword, time_filter = 'week'))
+        results = list(self.reddit.subreddit(sub).search(query = keyword, time_filter = 'month'))
         ans = []
         val = 0
         print(len(results))
         for submission in results:
-            ans.append(submission.title)
+            ans.append(self.get_sentiment(submission.title).title)
             val += self.get_sentiment(submission.title) / len(results)
-        return val
+        return return ans
 
 stuff = RSentiment()
 print stuff.get_comments(sys.argv[1], sys.argv[2])
