@@ -6,26 +6,19 @@ class RSentiment(object):
     '''
     Generic Twitter Class for sentiment analysis.
     '''
-    def __init__(self, keyword):
+    def __init__(self):
         '''
         Class constructor or initialization method.
         '''
         # keys and tokens from the Twitter Dev Console
-        consumer_key = keys.keys['consumerKey']
-        consumer_secret = keys.keys['consumerSecret']
-        access_token = keys.keys['accessToken']
-        access_token_secret = keys.keys['accessSecret']
+        user = keys.keys['redditUser']
+        password = keys.keys['redditPassword']
+        clientID = keys.keys['redditID']
+        secret = keys.keys['redditSecret']
 
-        self.topic = keyword
         # attempt authentication
-        try:
-
-            self.reddit = praw.Reddit(client_id='my client id',
-                 client_secret='my client secret',
-                 user_agent='my user agent')
-
-        except:
-            print("Error: Authentication Failed")
+        self.reddit = praw.Reddit(client_id = clientID, client_secret = secret, password = password, username = user, user_agent = 'charles bot')
+        print self.reddit.user.me()
 
     def sanitize(self, text):
         '''
@@ -37,6 +30,7 @@ class RSentiment(object):
     def get_sentiment(self, text):
         # create TextBlob object of passed text
         analysis = TextBlob(self.sanitize(text))
+        return analysis.sentiment.polarity
         # set sentiment
         if analysis.sentiment.polarity > 0:
             return 'positive'
@@ -45,28 +39,16 @@ class RSentiment(object):
         else:
             return 'negative'
 
-    def get_comments(self, count = 10):
+    def get_comments(self, keyword):
         '''
         Main function to fetch comments and parse them.
         '''
+        results = self.reddit.subreddit('all').search(query = keyword)
+        ans = []
+        val = 0
+        for submission in results:
+            val += self.get_sentiment(submission.title)
+        return val
 
-        try:
-            # fetch 10 hot submissions
-            submissions = reddit.subreddit(keyword).hot(limit=10)
-            comments = []
-            parsed_reddit = []
-            for sub in submissions:
-                # sub.created would definitely work, not sure abou comment.created
-                comments += list(sub.comments)
-
-            # parsing comments one by one
-            for comment in comments:
-                # empty dictionary to store required params of a comment
-                parsed = (comment.created.strftime("%m/%d/%Y"), self.get_sentiment(comment.parse))
-                parsed_reddit.append(parsed)
-
-            return parsed_reddit
-
-    except Error as e:
-            # print error (if any)
-            print("Error : " + str(e))
+stuff = RSentiment()
+print stuff.get_comments('Trump')
