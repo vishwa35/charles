@@ -2,7 +2,7 @@ from sentiment import TSentiment
 import datetime
 from datetime import timedelta
 
-topic = "Trump"
+topic = "Kendrick Lamar"
 s = TSentiment(topic)
 numOfTweets = 200
 tweetMap = {}
