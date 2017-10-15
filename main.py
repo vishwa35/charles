@@ -1,5 +1,6 @@
 from flask import Flask, render_template, g
-from sentiment import Sentiment
+from twitter import TSentiment
+from reddit import RSentiment
 import json
 import sqlite3
 
@@ -34,7 +35,7 @@ def home():
 
 @app.route("/sent_json")
 def tweet_sent():
-    s = Sentiment("Trump")
+    s = TSentiment("Trump")
     return json.dumps(s.get_tweets())
 
 if __name__ == "__main__":
