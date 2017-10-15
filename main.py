@@ -1,6 +1,6 @@
 from flask import Flask, render_template, g
-from twitter import TSentiment
-from reddit import RSentiment
+from sentiment import TSentiment
+# from reddit import RSentiment
 import json
 import sqlite3
 
