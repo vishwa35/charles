@@ -7,11 +7,11 @@
 }
 
 </style>
-<svg width="900" height="600"></svg>
+<svg id='twitter' width="900" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-var svg = d3.select("svg"),
+var svg = d3.select("#twitter"),
     margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom,
@@ -99,15 +99,16 @@ d3.csv("./static/sentiment_data.csv", function(d, i, columns) {
 });
 
 </script>
-<svg width="900" height="600"></svg>
+
+<svg id='reddit' width="900" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-var svg = d3.select("svg"),
+var svg = d3.select("#reddit"),
     margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + (margin.top + 100) + ")");
 
 var x = d3.scaleBand()
     .rangeRound([0, width])

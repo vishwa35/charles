@@ -39,7 +39,7 @@ class RSentiment(object):
         else:
             return 'negative'
 
-    def get_comments(self,sub = 'all', keyword):
+    def get_comments(self, keyword, sub = 'all'):
         '''
         Main function to fetch comments and parse them.
         '''
@@ -48,9 +48,9 @@ class RSentiment(object):
         val = 0
         print(len(results))
         for submission in results:
-            ans.append(self.get_sentiment(submission.title).title)
+            ans.append(self.get_sentiment(submission.title))
             val += self.get_sentiment(submission.title) / len(results)
-        return return ans
+        return ans
 
-stuff = RSentiment()
-print stuff.get_comments(sys.argv[1], sys.argv[2])
+# stuff = RSentiment()
+# print stuff.get_comments(sys.argv[1], sys.argv[2])

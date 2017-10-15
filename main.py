@@ -1,5 +1,6 @@
 from flask import Flask, render_template, g, request
 from sentiment import TSentiment
+from reddit import RSentiment
 import datetime
 from datetime import timedelta
 # from reddit import RSentiment
@@ -86,7 +87,7 @@ def tweetscrape(topic):
                 negativeTweets += 1
             else:
                 neutralTweets += 1
-        
+
         # Calculate the percentage distribution
         # positivePercentage = round(positiveTweets/float(tweetsObtained), 2)
         # negativePercentage = round(negativeTweets/float(tweetsObtained), 2)
@@ -103,7 +104,7 @@ def tweetscrape(topic):
         daysAgo -= 1
 
     write_csvfile = "./static/sentiment_data.csv"
-    csv = open(write_csvfile, "w") 
+    csv = open(write_csvfile, "w")
     csv.write('Sentiment,Positive,Neutral,Negative,' + topic + '\n')
     for timeStamp in tweetMap:
         csv.write(timeStamp + ', ' + tweetMap[timeStamp] + '\n')
@@ -112,7 +113,7 @@ def tweetscrape(topic):
     #     print time + " " + str(tweetMap[time][0]) + " percent positive, " + str(tweetMap[time][1]) + " percent negative, " + str(tweetMap[time][2]) + " percent neutral"
 
 
-def redditscrape(sub, keyword):
+def redditscrape(keyword, sub='all'):
     s = RSentiment()
 
 
@@ -130,14 +131,13 @@ def redditscrape(sub, keyword):
     		negative += 1
 
     write_csvfile = "./static/reddit_data.csv"
-    csv = open(write_csvfile, "w") 
+    csv = open(write_csvfile, "w")
     csv.write('Sentiment,Content,' + sub + " : " + keyword + '\n')
-    csv.write("Negative" + ', ' + negative + ',0\n')
-    csv.write("Neutral" + ', ' + neutral + ',0\n')
-    csv.write("Positive" + ', ' + positive + ',0\n')
+    csv.write("Negative" + ', ' + str(negative) + ',0\n')
+    csv.write("Neutral" + ', ' + str(neutral) + ',0\n')
+    csv.write("Positive" + ', ' + str(positive) + ',0\n')
 
 if __name__ == "__main__":
     # for user in query_db('select * from users'):
     #     print user['name']
     app.run()
-
