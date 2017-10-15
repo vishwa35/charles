@@ -45,12 +45,12 @@ class TSentiment(object):
         # create TextBlob object of passed tweet text
         analysis = TextBlob(self.clean_tweet(tweet))
         # set sentiment
-        if analysis.sentiment.polarity > 0:
+        if analysis.sentiment.polarity > 0.33:
             return 'positive'
-        elif analysis.sentiment.polarity == 0:
-            return 'neutral'
-        else:
+    elif analysis.sentiment.polarity < -0.33:
             return 'negative'
+        else:
+            return 'neutral'
 
     def get_tweets(self, count, sinceTime, untilTime):
         '''
@@ -82,4 +82,3 @@ class TSentiment(object):
         except tweepy.TweepError as e:
             # print error (if any)
             print("Error : " + str(e))
-
