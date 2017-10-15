@@ -47,7 +47,7 @@ def my_form_get():
     # print(text + ":")
     # print tweet_sent(text)
     tweetscrape(text)
-    return render_template('./data_vis/volume_distribution_vis.html')
+    return render_template('volume_distribution_vis.html')
 
 @app.route('/back', methods=['GET'])
 def my_form_back():
@@ -63,7 +63,7 @@ def my_form_back():
 
 def tweetscrape(topic):
     s = TSentiment(topic)
-    numOfTweets = 200
+    numOfTweets = 10
     tweetMap = {}
     daysAgo = 10
 
@@ -101,7 +101,7 @@ def tweetscrape(topic):
         #     print '----------------------------------------------------------------------'
         daysAgo -= 1
 
-    write_csvfile = "./data_vis/sentiment_data.csv"
+    write_csvfile = "./templates/data/sentiment_data.csv"
     csv = open(write_csvfile, "w") 
     csv.write('Sentiment,Positive,Neutral,Negative,' + topic + '\n')
     for timeStamp in tweetMap:

@@ -42,7 +42,7 @@ while daysAgo >= 0:
     #     print '----------------------------------------------------------------------'
     daysAgo -= 1
 
-write_csvfile = "./data_vis/sentiment_data.csv"
+write_csvfile = "./templates/sentiment_data.csv"
 csv = open(write_csvfile, "w") 
 csv.write('Sentiment,Positive,Neutral,Negative,' + topic + '\n')
 for timeStamp in tweetMap:
