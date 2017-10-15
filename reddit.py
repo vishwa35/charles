@@ -43,7 +43,7 @@ class RSentiment(object):
         '''
         Main function to fetch comments and parse them.
         '''
-        results = list(self.reddit.subreddit(sub).search(keyword))
+        results = list(self.reddit.subreddit(sub).search(query = keyword, time_filter = 'week'))
         ans = []
         val = 0
         print(len(results))
