@@ -45,12 +45,7 @@ class Sentiment(object):
         # create TextBlob object of passed tweet text
         analysis = TextBlob(self.clean_tweet(tweet))
         # set sentiment
-        if analysis.sentiment.polarity > 0:
-            return 'positive'
-        elif analysis.sentiment.polarity == 0:
-            return 'neutral'
-        else:
-            return 'negative'
+        return analysis.sentiment.polarity > 0
 
     def get_tweets(self, count = 10):
         '''
