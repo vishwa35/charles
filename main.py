@@ -45,11 +45,14 @@ def tweet_sent(text):
 @app.route('/req', methods=['GET'])
 def my_form_get():
     text =  request.args.get('text')
-    # print(text + ":")
-    # print tweet_sent(text)
     tweetscrape(text)
-    redditscrape(text)
     return render_template('volume_distribution_vis.html')
+
+@app.route('/req2', methods=['GET'])
+def my_form2_get():
+    text =  request.args.get('text')
+    redditscrape(text)
+    return render_template('volume_distribution_vis_reddit.html')
 
 @app.route('/back', methods=['GET'])
 def my_form_back():
@@ -65,7 +68,7 @@ def my_form_back():
 
 def tweetscrape(topic):
     s = TSentiment(topic)
-    numOfTweets = 10
+    numOfTweets = 200
     tweetMap = {}
     daysAgo = 10
 
